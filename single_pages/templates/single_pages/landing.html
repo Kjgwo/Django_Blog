@@ -1,13 +1,7 @@
-<!DOCTYPE html>
+{% extends 'blog/base.html' %}
 
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
+{% block title %}
     <title>홈페이지 대문</title>
-</head>
-<body>
-<h4><a href="/blog/templates/blog/post_list">BLOG</a></h4>
-<h4><a href="/single_pages/about_me">자기소개</a></h4>
-<h1>대문페이지!</h1>
-</body>
-</html>
+{% endblock %}
+{% block main_area %}
+    <h1>대문페이지!</h1>{% endblock %}

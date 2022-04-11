@@ -10,6 +10,3 @@ urlpatterns = [
     #path('<int:pk>/', views.single_post_page),
     #path('', views.index),
 ]
-
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
