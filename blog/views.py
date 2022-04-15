@@ -40,13 +40,12 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
     template_name = "blog/post_form_update.html"
 
-    
     def dispatch(self, request, *args, **kwargs):
         current_user = request.user
         if current_user.is_authenticated and current_user == self.get_object().author:
             return super(PostUpdate, self).dispatch(request, *args, **kwargs)
         else:
-            return PermissionDenied
+            raise PermissionDenied
 
 
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -54,7 +53,7 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     fields = ['title', 'hook_msg', 'content', 'head_image', 'attached_file', 'category']
 
     def test_func(self):
-        return self.request.user.is_superuser or self.request.is_staff
+        return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
         current_user = self.request.user
