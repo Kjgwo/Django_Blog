@@ -48,7 +48,6 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
             raise PermissionDenied
 
 
-
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
     fields = ['title', 'hook_msg', 'content', 'head_image', 'attached_file', 'category']
