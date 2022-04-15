@@ -58,3 +58,4 @@ class Post(models.Model):
 
     def get_file_name(self):
         return os.path.basename(self.attached_file.name)
+
