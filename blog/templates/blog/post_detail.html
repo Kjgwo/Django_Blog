@@ -5,12 +5,13 @@
 {% endblock %}
 
         {% block main_area %}
+
+            {% if user.is_authenticated and user == post.author %}
+          <a class="btn btn-info btn-sm float-right" href="/blog/update_post/{{ post.pk }}"
+               rote="button"><i class="fas fa-pen"></i>&nbsp Update Post</a>
+      {% endif %}
       <!-- Post Content Column -->
       <div class="col-lg-8">
-
-      {% if user.is_authenticated and user == post.author %}
-          <a href="/blog/update_post/{{ post.pk }}">Update blog</a>
-      {% endif %}
 
         <!-- Title -->
         <h1 class="mt-4">{{ post.title }}</h1>
@@ -37,7 +38,7 @@
         <hr>
 
         <!-- Post Content -->
-        <p>{{ post.content }}</p>
+        <p>{{ post.get_markdown_content | safe }}</p>
 
         {% if post.attached_file %}
             <a href="{{ post.attached_file.url }}" type="button" class="btn btn-outline-dark" download>첨부 파일 다운로드</a>

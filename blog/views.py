@@ -50,7 +50,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
-    fields = ['title', 'hook_msg', 'content', 'head_image', 'attached_file', 'category']
+    fields = ['title', 'hook_msg', 'content', 'head_image', 'attached_file', 'category', 'tags']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
